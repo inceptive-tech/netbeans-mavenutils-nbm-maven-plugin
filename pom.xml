@@ -20,13 +20,18 @@ under the License.
 -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
+    <!--    <parent>
         <groupId>org.apache.netbeans.utilities</groupId>
         <artifactId>utilities-parent</artifactId>
         <version>1</version>
+    </parent>-->
+    <parent>
+        <groupId>tech.inceptive</groupId>
+        <artifactId>pom-parent</artifactId>
+        <version>1.1.2-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
+    <groupId>org.apache.netbeans.utilities</groupId>
     <artifactId>nbm-maven-plugin</artifactId>
     <version>4.7-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
@@ -70,6 +75,37 @@ under the License.
             </plugins>
         </pluginManagement>
         <plugins>
+            <plugin>
+                <groupId>se.ayoy.maven-plugins</groupId>
+                <artifactId>ayoy-license-verifier-maven-plugin</artifactId>
+                <version>1.1.1-SNAPSHOT</version>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.owasp</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+                <version>6.5.0</version>
+                <configuration>
+                    <skip>true</skip>     
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <!-- TODO need to override parent version value... I suppose this will eventually end up in mojo parent pom, check regularly -->
                 <groupId>org.apache.maven.plugins</groupId>
